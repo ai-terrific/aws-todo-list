@@ -33,6 +33,11 @@ jobs:
           cd ./backend
           npm run deploy:dev
 
+      - name: Install frontend dependencies
+        run: |
+          cd ./frontend
+          npm install
+
       - name: Run frontend
         run: |
           cd ./frontend
