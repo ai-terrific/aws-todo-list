@@ -31,7 +31,7 @@ jobs:
       - name: Deploy
         run: |
           cd backend
-          npx run deploy:dev
+          npm run deploy:dev
 
       - name: Run frontend
         run: |

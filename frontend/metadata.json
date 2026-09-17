@@ -1,0 +1,6 @@
+{
+  "name": "Todo List",
+  "description": "A simple and clean todo list application built with React, TypeScript, and Material UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

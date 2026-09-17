@@ -1,0 +1,95 @@
+service: crud-api
+useDotenv: true
+
+frameworkVersion: 4
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  logs:
+    restApi: false
+  environment:
+    TABLE_NAME: ${self:service}-tasks-${self:provider.stage}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:Scan
+          Resource:
+            - !GetAtt ItemsTable.Arn
+
+functions:
+  createTask:
+    handler: src/handlers/tasks/create.handler
+    events:
+      - http:
+          path: /tasks
+          method: post
+          cors: true
+
+  getTask:
+    handler: src/handlers/tasks/get.handler
+    events:
+      - http:
+          path: /tasks/{id}
+          method: get
+          cors: true
+
+  updateTask:
+    handler: src/handlers/tasks/update.handler
+    events:
+      - http:
+          path: /tasks/{id}
+          method: put
+          cors: true
+
+  deleteTask:
+    handler: src/handlers/tasks/delete.handler
+    events:
+      - http:
+          path: /tasks/{id}
+          method: delete
+          cors: true
+
+  getAllTasks:
+    handler: src/handlers/tasks/getAll.handler
+    events:
+      - http:
+          path: /tasks
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    ItemsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-tasks-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+  Outputs:
+    ApiUrl:
+      Value:
+        Fn::Join:
+          - ""
+          - - "https://"
+            - !Ref ApiGatewayRestApi
+            - ".execute-api."
+            - ${self:provider.region}
+            - ".amazonaws.com/"
+            - ${self:provider.stage}
