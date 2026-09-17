@@ -24,8 +24,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Install backend dependencies
-        working-directory: backend
-        run: npm install
+        run: |
+          set -e
+          cd backend
+          npm install
 
       - name: Deploy
         working-directory: backend
