@@ -31,7 +31,7 @@ jobs:
       - name: Deploy
         run: |
           cd backend
-          npx serverless deploy:dev --stage dev
+          npx run deploy:dev
 
       - name: Run frontend
         run: |
