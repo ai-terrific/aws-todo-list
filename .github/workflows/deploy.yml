@@ -8,18 +8,7 @@ on:
     branches: [main]
 
 jobs:
-  # build-and-validate:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: "22.x"
-  #     - run: npm ci
-  #     - run: npx serverless package --stage dev # validates config, builds artifact without deploying
-
   deploy:
-    # needs: build-and-validate
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
