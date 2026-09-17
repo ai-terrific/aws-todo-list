@@ -1,4 +1,3 @@
-# .github/workflows/deploy.yml
 name: Deploy
 
 on:
@@ -25,10 +24,14 @@ jobs:
           aws-region: us-east-1
 
       - name: Install backend dependencies
-        run: npm i serverless --save-dev
+        run: |
+          cd backend
+          npm i serverless --save-dev
 
       - name: Deploy
-        run: npx serverless deploy --stage dev
+        run: |
+          cd backend
+          npx serverless deploy --stage dev
 
       - name: Run frontend
         run: |
