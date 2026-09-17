@@ -1,0 +1,47 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # build-and-validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "22.x"
+  #     - run: npm ci
+  #     - run: npx serverless package --stage dev # validates config, builds artifact without deploying
+
+  deploy:
+    # needs: build-and-validate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Install backend dependencies
+        run: npm i serverless --save-dev
+
+      - name: Deploy
+        run: npx serverless deploy --stage dev
+
+      - name: Run frontend
+        run: |
+          cd frontend
+          pm2 restart frontend --update-env || pm2 start npm --name "frontend" -- start
