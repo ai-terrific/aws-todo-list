@@ -25,13 +25,13 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          set -e
           cd backend
           npm install
 
       - name: Deploy
-        working-directory: backend
-        run: npx serverless deploy:dev --stage dev
+        run: |
+          cd backend
+          npx serverless deploy:dev --stage dev
 
       - name: Run frontend
         run: |
