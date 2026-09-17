@@ -24,14 +24,12 @@ jobs:
           aws-region: us-east-1
 
       - name: Install backend dependencies
-        run: |
-          cd backend
-          npm i serverless --save-dev
+        working-directory: backend
+        run: npm install
 
       - name: Deploy
-        run: |
-          cd backend
-          npx serverless deploy --stage dev
+        working-directory: backend
+        run: npx serverless deploy:dev --stage dev
 
       - name: Run frontend
         run: |
