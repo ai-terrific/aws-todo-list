@@ -1,7 +1,7 @@
 service: crud-api
 useDotenv: true
 
-frameworkVersion: "3.38.0"
+frameworkVersion: "3.40.0"
 
 package:
   individually: true
