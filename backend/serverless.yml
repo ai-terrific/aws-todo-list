@@ -1,7 +1,7 @@
 service: crud-api
 useDotenv: true
 
-frameworkVersion: 3
+frameworkVersion: "3.38.0"
 
 package:
   individually: true
@@ -30,7 +30,7 @@ provider:
 
 functions:
   createTask:
-    handler: src/handlers/tasks/create.handler
+    handler: dist/handlers/tasks/create.handler
     events:
       - http:
           path: /tasks
@@ -38,7 +38,7 @@ functions:
           cors: true
 
   getTask:
-    handler: src/handlers/tasks/get.handler
+    handler: dist/handlers/tasks/get.handler
     events:
       - http:
           path: /tasks/{id}
@@ -46,7 +46,7 @@ functions:
           cors: true
 
   updateTask:
-    handler: src/handlers/tasks/update.handler
+    handler: dist/handlers/tasks/update.handler
     events:
       - http:
           path: /tasks/{id}
@@ -54,7 +54,7 @@ functions:
           cors: true
 
   deleteTask:
-    handler: src/handlers/tasks/delete.handler
+    handler: dist/handlers/tasks/delete.handler
     events:
       - http:
           path: /tasks/{id}
@@ -62,7 +62,7 @@ functions:
           cors: true
 
   getAllTasks:
-    handler: src/handlers/tasks/getAll.handler
+    handler: dist/handlers/tasks/getAll.handler
     events:
       - http:
           path: /tasks
