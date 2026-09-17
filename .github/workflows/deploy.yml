@@ -36,4 +36,5 @@ jobs:
       - name: Run frontend
         run: |
           cd ./frontend
-          pm2 restart frontend --update-env || pm2 start npm --name "react-dev" -- run dev
+          npm i pm2 -g
+          pm2 restart frontend --update-env || pm2 start npm --name "frontend" -- run dev
