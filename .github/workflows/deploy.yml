@@ -25,15 +25,15 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          cd backend
+          cd ./backend
           npm install
 
       - name: Deploy
         run: |
-          cd backend
+          cd ./backend
           npm run deploy:dev
 
       - name: Run frontend
         run: |
-          cd frontend
+          cd ./frontend
           pm2 restart frontend --update-env || pm2 start npm --name "react-dev" -- run dev
