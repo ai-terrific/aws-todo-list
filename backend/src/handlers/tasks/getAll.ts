@@ -10,7 +10,7 @@ export const handler = async (): Promise<APIGatewayProxyResult> => {
     const result = await client.send(
       new ScanCommand({ TableName: TABLE_NAME }),
     );
-    return response(200, result.Items);
+    return response(200, result.Items ?? []);
   } catch (err: unknown) {
     console.error(err);
     return response(500, {

@@ -48,7 +48,9 @@ export default function App() {
   const handleGetAllTasks = async () => {
     try {
       const response = await api.get<Task[]>("/tasks");
-      console.log("Fetched tasks:", response.data);
+      if (!Array.isArray(response.data)) {
+        throw new Error("The tasks API returned an invalid response");
+      }
       setTasks(response.data);
     } catch (error) {
       console.error("Failed to fetch tasks:", error);
