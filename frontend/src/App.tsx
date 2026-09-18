@@ -95,9 +95,9 @@ export default function App() {
   const activeCount = tasks.filter((t) => !t.completed).length;
   const completedCount = tasks.length - activeCount;
 
-  const filteredTodos = tasks.filter((todo) => {
-    if (filter === "active") return !todo.completed;
-    if (filter === "completed") return todo.completed;
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "active") return !task.completed;
+    if (filter === "completed") return task.completed;
     return true;
   });
 
@@ -209,11 +209,11 @@ export default function App() {
               minHeight: 180,
             }}
           >
-            {filteredTodos.length === 0 ? (
+            {filteredTasks.length === 0 ? (
               <EmptyState filter={filter} hasAnyTodos={tasks.length > 0} />
             ) : (
               <Stack id="todo-items-stack" spacing={1.5} sx={{ mb: 2 }}>
-                {filteredTodos.map((todo) => (
+                {filteredTasks.map((todo) => (
                   <TodoItem
                     key={todo.id}
                     todo={todo}
