@@ -69,7 +69,7 @@ export default function App() {
   };
 
   // Edit task title and description
-  const handleEditTodo = async (
+  const handleEditTask = async (
     id: string,
     updates: { title: string; description?: string },
   ) => {
@@ -219,7 +219,7 @@ export default function App() {
                     todo={todo}
                     onToggle={handleToggleTask}
                     onDelete={handleDeleteTodo}
-                    onEdit={handleEditTodo}
+                    onEdit={handleEditTask}
                   />
                 ))}
               </Stack>
