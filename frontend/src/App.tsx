@@ -89,7 +89,7 @@ export default function App() {
 
   // Clear completed tasks
   const handleClearCompleted = () => {
-    setTasks((prev) => prev.filter((todo) => !todo.completed));
+    setTasks((prev) => prev.filter((task) => !task.completed));
   };
 
   const activeCount = tasks.filter((t) => !t.completed).length;
