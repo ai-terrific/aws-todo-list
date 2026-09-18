@@ -31,7 +31,7 @@ export default function App() {
   }, []);
 
   // Create Todo with title and description
-  const handleAddTodo = async (title: string, description?: string) => {
+  const handleAddTask = async (title: string, description?: string) => {
     try {
       const response = await api.post<Task>("/tasks", {
         title,
@@ -188,7 +188,7 @@ export default function App() {
 
           {/* New Task Input with Title and Description */}
           <Box id="todo-input-container" sx={{ mb: 3 }}>
-            <TodoInput onAdd={handleAddTodo} />
+            <TodoInput onAdd={handleAddTask} />
           </Box>
 
           {/* Progress Overview */}
