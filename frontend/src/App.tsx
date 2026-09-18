@@ -162,7 +162,7 @@ export default function App() {
                     fontSize: { xs: "1.5rem", sm: "1.75rem" },
                   }}
                 >
-                  Todo List
+                  Task List
                 </Typography>
               </Box>
 
