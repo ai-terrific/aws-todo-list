@@ -56,7 +56,7 @@ export default function App() {
   };
 
   // Toggle completion
-  const handleToggleTodo = async (
+  const handleToggleTask = async (
     id: string,
     updates: { title: string; description?: string; completed: boolean },
   ) => {
@@ -217,7 +217,7 @@ export default function App() {
                   <TodoItem
                     key={todo.id}
                     todo={todo}
-                    onToggle={handleToggleTodo}
+                    onToggle={handleToggleTask}
                     onDelete={handleDeleteTodo}
                     onEdit={handleEditTodo}
                   />
