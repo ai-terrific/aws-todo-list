@@ -1,5 +1,6 @@
 // handler.js
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { randomUUID } from "node:crypto";
 import type { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { client } from "../../libs/dynamoDB.js";
 import { response } from "../../libs/response.js";
@@ -15,6 +16,7 @@ export const handler = async (
     const data = JSON.parse(body || "{}");
 
     const item = {
+      id: randomUUID(),
       title: data.title || "",
       description: data.description || "",
       completed: false,
