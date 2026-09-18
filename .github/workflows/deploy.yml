@@ -39,6 +39,7 @@ jobs:
 
             cd /root/project/aws-todo-list/backend
             git pull origin main
+            npm install
             npm run deploy:dev
 
       - name: Deploy frontend
@@ -52,6 +53,7 @@ jobs:
 
             cd /root/project/aws-todo-list/frontend
             git pull origin main
+            npm install
             npm run build
             npm i pm2 -g
             pm2 restart frontend --update-env || pm2 start ecosystem.config.cjs
