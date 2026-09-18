@@ -78,7 +78,7 @@ export default function App() {
   };
 
   // Delete task
-  const handleDeleteTodo = async (id: string) => {
+  const handleDeleteTask = async (id: string) => {
     try {
       const response = await api.delete<Task[]>(`/tasks/${id}`);
       handleGetAllTasks();
@@ -218,7 +218,7 @@ export default function App() {
                     key={todo.id}
                     todo={todo}
                     onToggle={handleToggleTask}
-                    onDelete={handleDeleteTodo}
+                    onDelete={handleDeleteTask}
                     onEdit={handleEditTask}
                   />
                 ))}
